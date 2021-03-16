@@ -1,0 +1,27 @@
+<br>
+<mat-card *ngIf="hasData">
+  <h3>ESG Universe</h3>
+  <table mat-table [dataSource]="universeList" class="table-responsive">
+
+    <ng-container *ngFor="let disCol of universeHeaders; let colIndex = index" matColumnDef="{{disCol}}">
+      <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
+      <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="universeHeaders"></tr>
+    <tr mat-row *matRowDef="let row; columns: universeHeaders;"></tr>
+  </table>
+
+<br>
+  <h3>ESG Basic Scores</h3>
+<table mat-table [dataSource]="esgList" class="table-responsive">
+
+  <ng-container *ngFor="let disCol of columnHeaders; let colIndex = index" matColumnDef="{{disCol}}">
+    <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
+    <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnHeaders;"></tr>
+</table>
+</mat-card>

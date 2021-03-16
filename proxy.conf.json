@@ -1,0 +1,11 @@
+{
+    "/rdpapi": {
+      "target": "https://api.refinitiv.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/rdpapi": ""
+      }
+    }
+}

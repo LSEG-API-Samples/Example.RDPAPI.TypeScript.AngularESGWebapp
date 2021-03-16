@@ -1,0 +1,41 @@
+<div class="example-container mat-elevation-z8">
+
+  <mat-card class="example-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <h2>Log In</h2>
+      <mat-form-field class="example-full-width">
+        <label>
+          <input matInput placeholder="RDP Username" formControlName="username"
+                 [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
+        </label>
+        <mat-error>
+          <span *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">Please enter Username</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label>
+          <input type="password" matInput placeholder="RDP Password" formControlName="password"
+                 [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
+        </label>
+        <mat-error>
+          <span *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">Please enter Password</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <label>
+          <input matInput placeholder="RDP Application Key" formControlName='appkey'
+                 [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
+        </label>
+        <mat-error>
+          <span *ngIf="!loginForm.get('appkey')?.valid && loginForm.get('appkey')?.touched">Please enter Application Key</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary"><mat-icon>login</mat-icon>Login</button>
+      </div>
+    </form>
+    <div *ngIf="!isSuccess" color="red">{{errorMsg}}</div>
+
+  </mat-card>
+</div>
