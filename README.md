@@ -584,7 +584,7 @@ We will use Angular Material to generate the form. The form consists of a text b
 
 The output will be on the following page.
 
-![loginui](../esgwebapp/images/loginui.png)
+![loginui](/images/loginui.png)
 
 The method onSubmit from the following Typescript codes will check the login result and show the error message or redirect to the ESG component. It has a dependency on the AuthService and Router.
 
@@ -624,11 +624,11 @@ export class LoginComponent implements OnInit {
 
 If the login is successful,  it will route to the ESG Component page like the following screenshot.
 
-![esghome](../esgwebapp/images/esghome.png)
+![esghome](images/esghome.png)
 
 Otherwise, it will show the login error description to the Login UI like the following sample screenshot.
 
-![loginerrorui](../esgwebapp/images/loginerrorui.png)
+![loginerrorui](images/loginerrorui.png)
 
 ### ESG Component implementation
 
@@ -810,7 +810,6 @@ export class EsgComponent implements OnInit {
 
 The codes under the following block are the codes to handle ESG JSON messages. 
 
-
 ```ts
  if(searchData.links.count>0)
  {
@@ -839,7 +838,6 @@ To generate a Material Table from the data source automatically, we need to pars
 ```
 
 The following codes will do the job to parse and build the object one by one.
-
 
 ```ts
 let rowIndex = 0;
