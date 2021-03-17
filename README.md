@@ -4,7 +4,7 @@
 
 This article will show you how to use [Refinitiv Data Platform(RDP)](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) REST API with [Angular framework](https://angular.io/) to create a sample web application to retrieve  [Environmental, Social, and Governance (ESG)](https://www.refinitiv.com/en/financial-data/company-data/esg-data) basic score data.
 
-Environmental, Social and Governance (ESG) Data Services Covering Thousands of Companies. The Most Comprehensive Resource for Investment Decisions. Learn More & Request Details. Completely Transparent. Company Disclosed Data. 400+ ESG Metrics.
+ESG Scores from Refinitiv are designed to transparently and objectively measure a company’s relative ESG performance, commitment, and effectiveness across 10 main themes (emissions, environmental product innovation, human rights, shareholders, etc.) based on publicly-reported data. Information is collected by our ESG specialists based on publicly available sources such as company websites, annual reports, and corporate social responsibility reports or contributed by firms then audited and standardized.
 
 The web application will demonstrate the basic workflows of using RDP REST API and explain the required steps and data structure returned by the RDP services. Also, it will provide the sample message the application needs to parse and retrieve the ESG basic score. A developer can explore other ESG services on [the API Docs page](https://apidocs.refinitiv.com/), and then they can apply the same approach to retrieve the data.
 
