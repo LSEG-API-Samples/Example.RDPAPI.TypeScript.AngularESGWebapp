@@ -546,7 +546,7 @@ We will explain the implementation of LoginComponent and EsgComponent only.
 
 You can find the implementation to generate the Login UI from the login.component.html under folder \src\app\login. Also, you can find the codes to handle login requests in login.component.ts.
 
-We will use Angular Material to generate the form. The form consists of a text box to get username and password with submit button and now a text box to get AppKey because we will add it to the codes in service implementation instead.
+We will use Angular Material to generate the form. The form consists of a text box to get the RDP username, password, and application key with a submit button.
 
 ```html
 <div class="example-container mat-elevation-z8">
@@ -556,7 +556,7 @@ We will use Angular Material to generate the form. The form consists of a text b
       <h2>Log In</h2>
       <mat-form-field class="example-full-width">
         <label>
-          <input matInput placeholder="Username" formControlName="username"
+          <input matInput placeholder="RDP Username" formControlName="username"
                  [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
         </label>
         <mat-error>
@@ -565,21 +565,32 @@ We will use Angular Material to generate the form. The form consists of a text b
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <label>
-          <input type="password" matInput placeholder="Password" formControlName="password"
+          <input type="password" matInput placeholder="RDP Password" formControlName="password"
                  [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
         </label>
         <mat-error>
           <span *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">Please enter Password</span>
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <label>
+          <input matInput placeholder="RDP Application Key" formControlName='appkey'
+                 [errorStateMatcher]="matcher" (focus)="clearErrorMsg()">
+        </label>
+        <mat-error>
+          <span *ngIf="!loginForm.get('appkey')?.valid && loginForm.get('appkey')?.touched">Please enter Application Key</span>
+        </mat-error>
+      </mat-form-field>
       <div class="button-row">
         <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary"><mat-icon>login</mat-icon>Login</button>
       </div>
     </form>
-    <div *ngIf="!isSuccess">{{errorMsg}}</div>
+    <div *ngIf="!isSuccess" color="red">{{errorMsg}}</div>
 
   </mat-card>
 </div>
+
 
 ```
 
@@ -829,7 +840,7 @@ Below codes will get the name of data columns from field name  "headers," which 
   this.columnHeaders = searchData.headers.map((data: any) => data.title);
 ```
 
-To generate a Material Table from the data source automatically, we need to parse the data from a field named "data" to a JSON object like the following format.
+To generate a Material Table from the data source automatically, we need to parse the data from a field named "data" and then convert it to a JSON object like the following format.
 
 ```ts
 [
@@ -906,13 +917,13 @@ And start the Angular Cli server using
 ng serve -o
 ```
 
-It will show the login page or show the ESG page if you still do not log out. Below is a demo of application usage. Try it yourself, and feel free to modify the codes if needs.
+It will show the login page or show the ESG page if you still do not log out. The below screen records demonstrate the application usage. You can try it yourself, and feel free to modify the codes if needs.
 
 ![esgdemo](/images/esgangular.gif)
 
 ## Summary
 
-This article shows you a sample web application to retrieve ESG basic score data from the ESG service on the RDP. The example uses the Angular framework with the RDP REST API to get the ESG basic score, bind the data to the Angular material table data source, and show the result on the table. The application also provides sample codes to request the access token and handle refresh token from the EDS Authorization token service. We also provide the instruction to set the Angular dev server to use the proxy to avoid CORS error when calling 3rd party REST API from the local test server. Though the sample codes do not cover all of the scenario or the cases to handle the HTTP response status, we hope it will be a starter sample app for a new RDP user who needs to integrate the data from RDP services Angular web application.
+This article shows you a sample web application to retrieve ESG basic score data from the ESG service on the RDP. The example uses the Angular framework with the RDP REST API to get the ESG basic score, bind the data to the Angular material table data source, and show the result on the table. The application also provides sample codes to request the access token and handle refresh token from the EDS Authorization token service. We also provide the instruction to set the Angular dev server to use the proxy to avoid CORS error when calling 3rd party REST API from the local test server. Though the sample codes do not cover all of the scenarios or the cases to handle the HTTP response status, we hope it will be a starter sample app for a new RDP user who needs to integrate the data from RDP services with the Angular web application.
 
 ## References
 
