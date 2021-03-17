@@ -1,12 +1,12 @@
-# Building web app to display ESG data using Angular and RDP API
+# Build a Web application to display ESG data using Angular and RDP API
 
 ## Overview
 
-This article will show you how to use Refinitiv Data Platform(RDP) REST API with Angular framework to create a sample web application to retrieve  Environmental, Social, and Governance (ESG) basic score data.
+This article will show you how to use [Refinitiv Data Platform(RDP)](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) REST API with [Angular framework](https://angular.io/) to create a sample web application to retrieve  [Environmental, Social, and Governance (ESG)](https://www.refinitiv.com/en/financial-data/company-data/esg-data) basic score data.
 
 Environmental, Social and Governance (ESG) Data Services Covering Thousands of Companies. The Most Comprehensive Resource for Investment Decisions. Learn More & Request Details. Completely Transparent. Company Disclosed Data. 400+ ESG Metrics.
 
-The web application will demonstrate the basic workflows of using RDP REST API and explain the required steps and data structure returned by the RDP services and the message the application needs to parse and retrieve the ESG basic score.
+The web application will demonstrate the basic workflows of using RDP REST API and explain the required steps and data structure returned by the RDP services. Also, it will provide the sample message the application needs to parse and retrieve the ESG basic score. A developer can explore other ESG services on [the API Docs page](https://apidocs.refinitiv.com/), and then they can apply the same approach to retrieve the data.
 
 ![cover](images/esganularcover.png)
 
@@ -25,11 +25,11 @@ The web application will demonstrate the basic workflows of using RDP REST API a
 There are two services from the RDP that we will use in the Angular web application.
 
 1) RDP OAuth2 Token interface from EDS Authentication service.
-2) ESG Basic interface to get a basic score only for the current year. This one is a basic interface or endpoint which the ESG user should be able to access.
+2) ESG basic interface to get a basic score only for the current year. This one is a basic interface or endpoint which the ESG user should be able to access.
 
 ### RDP Token endpoint and required parameters
 
-Basically, the HTTP client library has to send an HTTP Post message to the following endpoint to get the access token.
+Typically, the application has to use the HTTP client library to send an HTTP Post message to the following endpoint to get the access token.
 
 ```url
 https://api.refinitiv.com/auth/oauth2/v1/token
@@ -71,12 +71,12 @@ The application has to send the following parameters in the HTTP Request body.
   }
   ```
 
-You can find more details about the HTTP Request and the HTTP Response with the JSON response message from this [article](https://developers.refinitiv.com/en/article-catalog/article/oauth-grant-types-in-refinitiv-data-platform)). 
+You can find more details about the HTTP Request and the HTTP Response with the JSON response message from this [article](https://developers.refinitiv.com/en/article-catalog/article/oauth-grant-types-in-refinitiv-data-platform)).
 We will use these parameters in our Angular app.
 
 ### ESG endpoint and required parameters
 
-Getting the ESG data is quite easy and not complex. 
+Getting the ESG data is quite easy and not complex.
 The application has to send the HTTP Get message with Authorization header to the following endpoint to retrieve ESG basic score.
 
 * HTTP Get Headers
@@ -93,6 +93,7 @@ The application has to send the HTTP Get message with Authorization header to th
 ```url
 https://api.refinitiv.com/data/environmental-social-governance/v2/views/basic
 ```
+
 It requires just one query parameter named "universe" like the following sample.
 
 ```url
@@ -214,7 +215,7 @@ I will not explain the basic setting and command line in this article. You can f
 
 ### Setup proxy configuration to avoid CORS issue
 
-There are additional steps you need to set up in the project to call RDP REST API from the Angular app. Typically, if your Angular HTTP client library calls a 3rd party Web API that locates on a different server, you will see an error about  CORS (Cross-Origin Resource Sharing) that does not allow you to call the function. In general, the browser security disallows you from making cross-domain requests except if the HTTP response has a Control-Allow-Origin header with a * value or your client's domain.
+You need an additional setting to use the HttpClient library to call the RDP REST API from the Angular app. Typically, if your Angular HTTP client library calls a 3rd party Web API that locates on a different server, you will see an error about CORS (Cross-Origin Resource Sharing) that does not allow you to call the function. In general, the browser security disallows you from making cross-domain requests except if the HTTP response has a Control-Allow-Origin header with a * value or your client's domain.
 
 We will create a proxy file __proxy.conf.json__ with the following contents to solve the issue.
 
@@ -233,7 +234,7 @@ We will create a proxy file __proxy.conf.json__ with the following contents to s
 
 ```
 
-This configuration file specifies that any HTTP request that starts with the __/rdpapi/__ path will be sent to the proxy, which will redirect it to the target hostname __api.refinitiv.com__.
+This configuration file specifies that any HTTP request that starts with the __/rdpapi/__ path will be sent to the proxy, redirecting it to the target hostname __api.refinitiv.com__.
 
 We need to add a proxyConfig key to angular.json files so the server can use the proxy setting when we start it with the __ng serve__ command.
 
@@ -582,7 +583,7 @@ We will use Angular Material to generate the form. The form consists of a text b
 
 ```
 
-The output will be on the following page.
+It will generate the following page.
 
 ![loginui](/images/loginui.png)
 
