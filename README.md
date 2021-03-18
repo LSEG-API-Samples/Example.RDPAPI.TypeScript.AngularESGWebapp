@@ -14,7 +14,7 @@ The web application will demonstrate the basic workflows of using RDP REST API a
 
 * Required basic knowledge of Typescript programming and Angular CLI. We will provide steps to run and test the sample application in a demo section. You can also learn basic knowledge and command line for running angular CLI from [Angular.io](https://angular.io/docs).
   
-* Required [Node.js](https://nodejs.org/en/download/), you can also use [nvm](https://github.com/nvm-sh/nvm/releases/tag/v0.37.2) to install LTS version of the Node.js.
+* Required [Node.js](https://nodejs.org/en/download/). Note that the example app was tested with version 12.18.3, but I believe it should work with the new version. You can use tools like the [nvm](https://github.com/nvm-sh/nvm/releases/tag/v0.37.2) to install the LTS version on your dev env.
 
 * Required Angular CLI. You can find the instruction from [Angular.io](https://angular.io/guide/setup-local) to set up the Cli.
 
@@ -211,7 +211,7 @@ We will use a built-in dev server that came with the Angular framework to develo
 ..\esgwebapp\ng serve -o
 ```
 
-I will not explain the basic setting and command line in this article. You can find additional details about the command on Angular.io.
+We will not explain the basic setting and command line in this article. You can find additional details about the command on Angular.io.
 
 ### Setup proxy configuration to avoid CORS issue
 
@@ -525,7 +525,7 @@ const routes: Routes = [
 
 There will be three main Angular components that we will create in this sample app.
 
-* __LoginComponent__ is a component to show the login form and get the user's RDP username and password. If the login is a success, it will change the route to ESGComponent.
+* __LoginComponent__ is a component to show the login form and get the user's RDP username and password. If the login is a success, it will redirect to ESGComponent.
 
 * __ESGComponent__ is an ESG main page. It will show a text box to get the input of the universe or keyword from the user and then submit a request to ESG service to get ESG basic score and display data in a table.
 
@@ -634,7 +634,7 @@ export class LoginComponent implements OnInit {
   //...
 ```
 
-If the login is successful,  it will route to the ESG Component page like the following screenshot.
+If the login is successful,  it will redirect the ESG Component page like the following screenshot.
 
 ![esghome](images/esghome.png)
 
@@ -689,38 +689,6 @@ This is the HTML to generate the ESG component. You can find the source codes in
 ```
 
 You may notice the \<app-esgdata> tag. It's the angular component to show ESG data in the Angular Material Table. It will bind data passing from ESGComponent to Material data source and automatically generate a table based on the list of column names we set in [columnHeaders] and [universeHeaers] tags. EsgData component is a separate component provided under the folder "\src\app\esgdata".
-
-Below is a code to generate the Material table.
-
-```html
-<br>
-<mat-card *ngIf="hasData">
-  <h3>ESG Universe</h3>
-  <table mat-table [dataSource]="universeList" class="table-responsive">
-
-    <ng-container *ngFor="let disCol of universeHeaders; let colIndex = index" matColumnDef="{{disCol}}">
-      <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
-      <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="universeHeaders"></tr>
-    <tr mat-row *matRowDef="let row; columns: universeHeaders;"></tr>
-  </table>
-
-<br>
-  <h3>ESG Basic Scores</h3>
-<table mat-table [dataSource]="esgList" class="table-responsive">
-
-  <ng-container *ngFor="let disCol of columnHeaders; let colIndex = index" matColumnDef="{{disCol}}">
-    <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
-    <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnHeaders;"></tr>
-</table>
-</mat-card>
-```
 
 The result after submitting the query will look like the following screenshot.
 
