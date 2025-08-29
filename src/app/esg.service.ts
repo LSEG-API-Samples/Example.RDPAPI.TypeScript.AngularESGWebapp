@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 const API_URL = 'http://localhost:4200/';
 @Injectable({

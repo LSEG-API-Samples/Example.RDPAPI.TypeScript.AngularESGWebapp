@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {EsgComponent} from './esg/esg.component';
@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EsgdataComponent } from './esgdata/esgdata.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,6 @@ import { EsgdataComponent } from './esgdata/esgdata.component';
     imports: [
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
