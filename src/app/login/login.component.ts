@@ -3,6 +3,13 @@ import {AuthService} from '../auth.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -13,6 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
   selector: 'app-login',
+    standalone: true,
+   imports: [MatIconModule,MatFormFieldModule,MatInputModule,MatCardModule,FormsModule,ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['../app.component.scss']
 })
