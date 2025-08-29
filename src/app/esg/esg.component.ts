@@ -4,9 +4,19 @@ import {TokenService} from '../token.service';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {EsgService} from '../esg.service';
+import {EsgdataComponent} from '../esgdata/esgdata.component';
+import {MatIconModule} from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table'  
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from '@angular/common'; 
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-secure',
+   standalone: true,
+   imports: [MatIconModule,MatTableModule,MatFormFieldModule,FormsModule,ReactiveFormsModule,MatCardModule,EsgdataComponent,CommonModule,MatInputModule],
   templateUrl: './esg.component.html',
   styleUrls: ['../app.component.scss']
 })
@@ -21,7 +31,9 @@ export class EsgComponent implements OnInit {
   universeList: any[] = [];
   universeHeaders: string[] = [];
   constructor(private authService: AuthService, private tokenService: TokenService, private esgService: EsgService,
-              private router: Router, private formBuilder: FormBuilder) { }
+    private router: Router, private formBuilder: FormBuilder) {
+    console.log("Token: "+tokenService.getToken());
+  }
 
   ngOnInit(): void {
       this.hasData = false;

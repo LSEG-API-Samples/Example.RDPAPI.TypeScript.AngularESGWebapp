@@ -19,8 +19,8 @@
         <button type="submit" [disabled]="!searchForm.valid" mat-flat-button color="primary"><mat-icon>search</mat-icon>search</button>
       </form>
       <div>
-        <mat-error *ngIf="searchForm.get('searchKeyword')?.errors?.serverError">
-          {{ searchForm.get('searchKeyword')?.errors?.serverError }}
+        <mat-error *ngIf="searchForm.get('searchKeyword')?.errors?.['serverError']">
+          {{ searchForm.get('searchKeyword')?.errors?.['serverError'] }}
         </mat-error>
       </div>
   </mat-card>
